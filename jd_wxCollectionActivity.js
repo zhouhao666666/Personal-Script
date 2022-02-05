@@ -7,13 +7,24 @@ TG https://t.me/duckjobs
 
 JD_CART_REMOVESIZE || 20; // 运行一次取消多全部已关注的商品。数字0表示不取关任何商品
 JD_CART_REMOVEALL || true;    //是否清空，如果为false，则上面设置了多少就只删除多少条
-
+7 7 7 7 * jd_wxCollectionActivity.js
 */
 const $ = new Env('加购物车抽奖');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
-let cookiesArr = [], cookie = '', message = '' ,isPush = false;
-let activityIdList = ['8a356b748ac7474f8de96c2c9ac8fa79', 'e29136a4072e4f31a271825d8a45f270', '2366188342744ccca6cb615a59369acc', '296b02fe69ff416ebc2661d598a1bf4e', 'b4826256b69e479b8cddb6dbba6bc811', '657aa7b63ade4900ab9ea470023da36d', '9f0adc0517bf47e9986193e6b5c56034', '7294b5b5a93645b4b7f61a1ee9dd1d0d', 'c0a8a029272042cca3e9d504ad753df6', '9d6ac2ab57ec4441a775318de763c4d8', 'de50659b20bc4dfe957d473ce799f22c', '7db7558858744d5bb6b6373f48556ecc', '60d238325ea140b7bd382a8c3f14f352', 'e88d446774b34a0986b9aa5d95c33436', 'eff7478c945648d5939211d82d86db0b']
+let cookiesArr = [], cookie = '', message = '' ;
+let activityIdList = [
+    'effebcba68144f20ad2b04368d832be6', 
+    '17d39c7a4d3d401299505fc848570700', 
+    '3b3b7e66e212481984ff1d28435e61d7', 
+    '119bc80e9bbd41d0bfbeb0c40cd5a789', 
+    '2d0f7fe090e64c6fba31f514ab605c9f', 
+    'acab138142c0479fa31fce54a585162c', 
+    '3bcdcb229d844ae6b93efe60201d6d38', 
+    '1a293403e1b14c819c4825a2bd71c4b2', 
+    '1c7be1930f3f4daf8e7dbe63b5b854b8', 
+    '04ce5a271883493f87b2dba044b4977c', 
+]
 let lz_cookie = {}
 
 if (process.env.ACTIVITY_ID && process.env.ACTIVITY_ID != "") {
@@ -85,19 +96,19 @@ $.keywordsNum = 0;
                     break
                 }
                 await $.wait(2000)
-                // await requireConfig();
-                // do {
-                //     await getCart_xh();
-                //     $.keywordsNum = 0
-                //     if($.beforeRemove !== "0"){
-                //         await cartFilter_xh(venderCart);
-                //         if(parseInt($.beforeRemove) !== $.keywordsNum) await removeCart();
-                //         else {
-                //             console.log('由于购物车内的商品均包含关键字，本次执行将不删除购物车数据')
-                //             break;
-                //         }
-                //     } else break;
-                // } while(isRemoveAll && $.keywordsNum !== $.beforeRemove)
+                await requireConfig();
+                do {
+                    await getCart_xh();
+                    $.keywordsNum = 0
+                    if($.beforeRemove !== "0"){
+                        await cartFilter_xh(venderCart);
+                        if(parseInt($.beforeRemove) !== $.keywordsNum) await removeCart();
+                        else {
+                            console.log('由于购物车内的商品均包含关键字，本次执行将不删除购物车数据')
+                            break;
+                        }
+                    } else break;
+                } while(isRemoveAll && $.keywordsNum !== $.beforeRemove)
                 if ($.bean > 0) {
                     message += `\n【京东账号${$.index}】${$.nickName || $.UserName} \n       └ 获得 ${$.bean} 京豆。`
                 }
@@ -359,6 +370,10 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 
 }
+function strToJson(str){
+	var json = eval('(' + str + ')');
+	return json;
+}
 function requireConfig(){
     return new Promise(resolve => {
         if($.isNode() && process.env.JD_CART){
@@ -381,7 +396,7 @@ function getCart_xh(){
         }
         $.get(option, async(err, resp, data) => {
             try{
-                data = JSON.parse(getSubstr(data, "window.cartData = ", "window._PFM_TIMING"));
+                data = strToJson(getSubstr(data, "window.cartData = ", "window._PFM_TIMING"));
                 $.areaId = data.areaId;   // locationId的传值
                 $.traceId = data.traceId; // traceid的传值
                 venderCart = data.cart.venderCart;
