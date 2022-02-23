@@ -8,17 +8,17 @@ Last Modified time: 2022-2-8
 ============Quantumultx===============
 [task_local]
 #赚京豆-瓜分京豆
-10 1,2,3 * * * jd_syj.js, tag=赚京豆-瓜分京豆, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_syj.png, enabled=true
+10 1,2,3,4 * * * jd_syj.js, tag=赚京豆-瓜分京豆, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_syj.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 1,2,3 * * *" script-path=jd_syj.js, tag=赚京豆-瓜分京豆
+cron "10 1,2,3,4 * * *" script-path=jd_syj.js, tag=赚京豆-瓜分京豆
 
 ===============Surge=================
-赚京豆-瓜分京豆 = type=cron,cronexp="10 1,2,3 * * *",wake-system=1,timeout=3600,script-path=jd_syj.js
+赚京豆-瓜分京豆 = type=cron,cronexp="10 1,2,3,4 * * *",wake-system=1,timeout=3600,script-path=jd_syj.js
 
 ============小火箭=========
-赚京豆-瓜分京豆 = type=cron,script-path=jd_syj.js, cronexpr="10 1,2,3 * * *", timeout=3600, enable=true
+赚京豆-瓜分京豆 = type=cron,script-path=jd_syj.js, cronexpr="10 1,2,3,4 * * *", timeout=3600, enable=true
  */
 const $ = new Env('搞鸡玩家-赚京豆-瓜分京豆');
 $.appId = 'dde2b';
