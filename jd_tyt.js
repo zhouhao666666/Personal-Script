@@ -7,7 +7,7 @@
 0 1 * * * jd_tyt.js, tag=推一推, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 */
 
-const $ = new Env('极速版-推推赚大钱');//助力前八个可助力的账号不满意去57行改即可
+const $ = new Env('极速版-推推赚大钱');//助力前三个可助力的账号
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -53,8 +53,8 @@ if ($.isNode()) {
           await info()
           await coinDozerBackFlow()
           await getCoinDozerInfo()
-          console.log('\n助力前八个可助力的账号不满意去57行改即可\n');
-          if (inviteCodes.length >= 7) {
+          console.log('\n注意助力前三个可助力的账号\n');
+          if (inviteCodes.length >= 3) {
                break
           }
      }
@@ -96,7 +96,7 @@ function info() {
 
           const nm = {
                url: `${JD_API_HOST}`,
-               body: `functionId=initiateCoinDozer&body={"actId":"d5a8c7198ee54de093d2adb04089d3ec","channel":"coin_dozer","antiToken":"","referer":"-1","frontendInitStatus":"s"}&appid=megatron&client=ios&clientVersion=14.3&t=1636014459632&networkType=4g&eid=&fp=-1&frontendInitStatus=s&uuid=8888&osVersion=14.3&d_brand=&d_model=&agent=-1&pageClickKey=-1&screen=400*700&platform=3&lang=zh_CN`,
+               body: `functionId=initiateCoinDozer&body={"actId":"49f40d2f40b3470e8d6c39aa4866c7ff","channel":"coin_dozer","antiToken":"","referer":"-1","frontendInitStatus":"s"}&appid=megatron&client=ios&clientVersion=14.3&t=1636014459632&networkType=4g&eid=&fp=-1&frontendInitStatus=s&uuid=8888&osVersion=14.3&d_brand=&d_model=&agent=-1&pageClickKey=-1&screen=400*700&platform=3&lang=zh_CN`,
                headers: {
                     "Cookie": cookie,
                     "Origin": "https://pushgold.jd.com",
@@ -139,7 +139,7 @@ function coinDozerBackFlow() {
 
           const nm = {
                url: `${JD_API_HOST}`,
-               body: `functionId=coinDozerBackFlow&body={"actId":"d5a8c7198ee54de093d2adb04089d3ec","channel":"coin_dozer","antiToken":"","referer":"-1","frontendInitStatus":"s"}&appid=megatron&client=ios&clientVersion=14.3&t=1636015617899&networkType=4g&eid=&fp=-1&frontendInitStatus=s&uuid=8888&osVersion=14.3&d_brand=&d_model=&agent=-1&pageClickKey=-1&screen=400*700&platform=3&lang=zh_CN`,
+               body: `functionId=coinDozerBackFlow&body={"actId":"49f40d2f40b3470e8d6c39aa4866c7ff","channel":"coin_dozer","antiToken":"","referer":"-1","frontendInitStatus":"s"}&appid=megatron&client=ios&clientVersion=14.3&t=1636015617899&networkType=4g&eid=&fp=-1&frontendInitStatus=s&uuid=8888&osVersion=14.3&d_brand=&d_model=&agent=-1&pageClickKey=-1&screen=400*700&platform=3&lang=zh_CN`,
                headers: {
 
                     "Cookie": cookie,
@@ -180,7 +180,7 @@ function helpCoinDozer(packetId) {
      return new Promise((resolve) => {
           const nm = {
                url: `${JD_API_HOST}`,
-               body: `functionId=helpCoinDozer&appid=station-soa-h5&client=H5&clientVersion=1.0.0&t=1636015855103&body={"actId":"d5a8c7198ee54de093d2adb04089d3ec","channel":"coin_dozer","antiToken":"","referer":"-1","frontendInitStatus":"s","packetId":"${packetId}"}&_ste=1&_stk=appid,body,client,clientVersion,functionId,t&h5st=20211104165055104;9806356985655163;10005;tk01wd1ed1d5f30nBDriGzaeVZZ9vuiX+cBzRLExSEzpfTriRD0nxU6BbRIOcSQvnfh74uInjSeb6i+VHpnHrBJdVwzs;017f330f7a84896d31a8d6017a1504dc16be8001273aaea9a04a8d04aad033d9`,
+               body: `functionId=helpCoinDozer&appid=station-soa-h5&client=H5&clientVersion=1.0.0&t=1636015855103&body={"actId":"49f40d2f40b3470e8d6c39aa4866c7ff","channel":"coin_dozer","antiToken":"","referer":"-1","frontendInitStatus":"s","packetId":"${packetId}"}&_ste=1&_stk=appid,body,client,clientVersion,functionId,t&h5st=20211104165055104;9806356985655163;10005;tk01wd1ed1d5f30nBDriGzaeVZZ9vuiX+cBzRLExSEzpfTriRD0nxU6BbRIOcSQvnfh74uInjSeb6i+VHpnHrBJdVwzs;017f330f7a84896d31a8d6017a1504dc16be8001273aaea9a04a8d04aad033d9`,
                headers: {
 
                     "Cookie": cookie,
@@ -220,7 +220,7 @@ function help(packetId) {
      return new Promise((resolve) => {
           const nm = {
                url: `${JD_API_HOST}`,
-               body: `functionId=helpCoinDozer&appid=station-soa-h5&client=H5&clientVersion=1.0.0&t=1623120183787&body={"actId":"d5a8c7198ee54de093d2adb04089d3ec","channel":"coin_dozer","antiToken":"","referer":"-1","frontendInitStatus":"s","packetId":"${packetId}","helperStatus":"0"}&_ste=1&_stk=appid,body,client,clientVersion,functionId,t&h5st=20210608104303790;8489907903583162;10005;tk01w89681aa9a8nZDdIanIyWnVuWFLK4gnqY+05WKcPY3NWU2dcfa73B7PBM7ufJEN0U+4MyHW5N2mT/RNMq72ycJxH;7e6b956f1a8a71b269a0038bbb4abd24bcfb834a88910818cf1bdfc55b7b96e5`,
+               body: `functionId=helpCoinDozer&appid=station-soa-h5&client=H5&clientVersion=1.0.0&t=1623120183787&body={"actId":"49f40d2f40b3470e8d6c39aa4866c7ff","channel":"coin_dozer","antiToken":"","referer":"-1","frontendInitStatus":"s","packetId":"${packetId}","helperStatus":"0"}&_ste=1&_stk=appid,body,client,clientVersion,functionId,t&h5st=20210608104303790;8489907903583162;10005;tk01w89681aa9a8nZDdIanIyWnVuWFLK4gnqY+05WKcPY3NWU2dcfa73B7PBM7ufJEN0U+4MyHW5N2mT/RNMq72ycJxH;7e6b956f1a8a71b269a0038bbb4abd24bcfb834a88910818cf1bdfc55b7b96e5`,
                headers: {
 
                     "Cookie": cookie,
@@ -251,6 +251,7 @@ function help(packetId) {
                               if (data.msg.indexOf("完成") != -1) {
                                    $.ok = true
                               }
+                              console.log(data.msg)
                          }
                     }
                } catch (e) {
@@ -267,7 +268,7 @@ function getCoinDozerInfo() {
 
           const nm = {
                url: `${JD_API_HOST}`,
-               body: `functionId=getCoinDozerInfo&body={"actId":"d5a8c7198ee54de093d2adb04089d3ec","channel":"coin_dozer","antiToken":"","referer":"-1","frontendInitStatus":"s"}&appid=megatron&client=ios&clientVersion=14.3&t=1636015858295&networkType=4g&eid=&fp=-1&frontendInitStatus=s&uuid=8888&osVersion=14.3&d_brand=&d_model=&agent=-1&pageClickKey=-1&screen=400*700&platform=3&lang=zh_CN`,
+               body: `functionId=getCoinDozerInfo&body={"actId":"49f40d2f40b3470e8d6c39aa4866c7ff","channel":"coin_dozer","antiToken":"","referer":"-1","frontendInitStatus":"s"}&appid=megatron&client=ios&clientVersion=14.3&t=1636015858295&networkType=4g&eid=&fp=-1&frontendInitStatus=s&uuid=8888&osVersion=14.3&d_brand=&d_model=&agent=-1&pageClickKey=-1&screen=400*700&platform=3&lang=zh_CN`,
                headers: {
                     "Cookie": cookie,
                     "Origin": "https://pushgold.jd.com",
@@ -284,7 +285,7 @@ function getCoinDozerInfo() {
                          if (safeGet(data)) {
                               data = JSON.parse(data);
                               if (data.success == true && data?.data?.sponsorActivityInfo?.packetId) {
-                                   console.log('CK：' + data.data.sponsorActivityInfo.initiatorNickname)
+                                   console.log('叼毛：' + data.data.sponsorActivityInfo.initiatorNickname)
                                    console.log('邀请码：' + data.data.sponsorActivityInfo.packetId)
                                    console.log('推出：' + data.data.sponsorActivityInfo.dismantledAmount)
                                    if (data.data && data.data.sponsorActivityInfo.packetId) {
